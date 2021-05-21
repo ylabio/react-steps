@@ -8,10 +8,12 @@ module.exports = function (name, query) {
 
   // Разбор действия по параметрам запроса
   if (query.action==='create'){
-    data.addItem({title: 'Новая запись'});
+    const item = data.addItem({title: 'Новая запись'});
+    return JSON.stringify(item);
   } else
   if (query.action==='delete' && query.code){
     data.deleteItem(query.code)
+    return true;
   }
 
   // Данные для рендера в шаблон

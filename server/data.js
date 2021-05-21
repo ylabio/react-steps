@@ -46,6 +46,7 @@ const data = {
       item.title = 'Новая запись ' + item.code;
     }
     list.push(item);
+    return item;
   },
 
   /**

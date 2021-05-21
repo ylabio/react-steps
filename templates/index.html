@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Список объектов</title>
     <link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
     <div class="Page">
@@ -13,16 +14,22 @@
         <div class="Page__center">
 
             <div class="Controls">
-                <a href="/?action=create&page=<%= pageCurrent %>"><button>Добавить</button></a>
+                <a href="/?action=create&page=<%= pageCurrent %>" data-action="create">
+                    <button>Добавить</button>
+                </a>
             </div>
 
             <div class="List">
                 <% list.forEach(function(item){ %>
-                <div class="List__item">
+                <div class="List__item" data-code="<%= item.code %>">
                     <div class="Item">
                         <div class="Item__number">№<%= item.code %></div>
                         <div class="Item__title"><%= item.title %></div>
-                        <div class="Item__actions"><a href="/?action=delete&code=<%= item.code %>"><button>Удалить</button></a></div>
+                        <div class="Item__actions">
+                            <a href="/?action=delete&code=<%= item.code %>" data-action="delete" data-code="<%= item.code %>">
+                                <button>Удалить</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <% }); %>
@@ -35,5 +42,20 @@
             </div>
         </div>
     </div>
+
+    <div id="mocks" style="display: none">
+        <!-- Заготовка для добавления пункта в список -->
+        <div class="List__item">
+            <div class="Item">
+                <div class="Item__number"></div>
+                <div class="Item__title"></div>
+                <div class="Item__actions">
+                    <a href=""><button>Удалить</button></a>
+                </div>
+            </div>
+        </div>
+        <!-- -->
+    </div>
+    <script src="./index.js"></script>
 </body>
 </html>
