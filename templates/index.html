@@ -13,7 +13,7 @@
         <div class="Page__center">
 
             <div class="Controls">
-                <button>Добавить</button>
+                <a href="/?action=create&page=<%= pageCurrent %>"><button>Добавить</button></a>
             </div>
 
             <div class="List">
@@ -22,7 +22,7 @@
                     <div class="Item">
                         <div class="Item__number">№<%= item.code %></div>
                         <div class="Item__title"><%= item.title %></div>
-                        <div class="Item__actions"><button>Удалить</button></div>
+                        <div class="Item__actions"><a href="/?action=delete&code=<%= item.code %>"><button>Удалить</button></a></div>
                     </div>
                 </div>
                 <% }); %>

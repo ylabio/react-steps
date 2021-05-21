@@ -6,6 +6,14 @@ let data = require('./data.js');
 
 module.exports = function (name, query) {
 
+  // Разбор действия по параметрам запроса
+  if (query.action==='create'){
+    data.addItem({title: 'Новая запись'});
+  } else
+  if (query.action==='delete' && query.code){
+    data.deleteItem(query.code)
+  }
+
   // Данные для рендера в шаблон
   const pageCurrent = data.validatePage(query.page);
   const pageCount = data.getPageCount();
