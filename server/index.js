@@ -1,15 +1,17 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const PORT = 3000;
-const options = {
-  root: path.join(__dirname, '../front')
-};
+const render = require('./render.js');
 
-// Отправка файлов на любой запрос
-app.get('/*', (req, res) => {
-  let fileName = /\/$/.test(req.url) ? req.url + 'index.html' : req.url;
-  res.sendFile(fileName, options,);
+// Статик файлы
+app.use(express.static('public'));
+
+// Генерация ответа
+app.use(async (req, res) => {
+  let name = /\/$/.test(req.url) ? req.url + 'index.html' : req.url;
+  res.send(
+    await render(name, req.query)
+  );
 });
 
 app.listen(PORT, err => {

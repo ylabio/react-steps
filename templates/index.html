@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список объектов</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="Page">
+        <div class="Page__head">
+            <h1>Документ 1</h1>
+        </div>
+        <div class="Page__center">
+
+            <div class="Controls">
+                <button>Добавить</button>
+            </div>
+
+            <div class="List">
+                <% list.forEach(function(item){ %>
+                <div class="List__item">
+                    <div class="Item">
+                        <div class="Item__number">№<%= item.code %></div>
+                        <div class="Item__title"><%= item.title %></div>
+                        <div class="Item__actions"><button>Удалить</button></div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+
+            <div class="Paginator">
+                <% for (let i = 1; i <= pageCount; i++) { %>
+                <a class="Paginator__page <%= i === pageCurrent ? 'Paginator__page_current' : '' %>" href="/?page=<%= i %>"><%= i %></a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
